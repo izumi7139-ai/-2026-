@@ -1,8 +1,9 @@
 pandas
 numpy
 requests
-openpyxl
 yfinance
+openpyxl
+xlrd
 lxml
 html5lib
-ta
+beautifulsoup4
