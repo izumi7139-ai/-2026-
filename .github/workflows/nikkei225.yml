@@ -1,16 +1,14 @@
-name: Nikkei225 Two Step LINE Notify
+name: J-TENBAGGER Weekly LINE Notify
 
 on:
   schedule:
-    - cron: "30 22 * * *"
+    - cron: "30 22 * * 0"   # 日本時間 月曜 7:30
   workflow_dispatch:
 
 jobs:
-  morning:
+  j-tenbagger:
     runs-on: ubuntu-latest
-
-    env:
-      NOTIFY_MODE: MORNING
+    timeout-minutes: 120
 
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +20,7 @@ jobs:
       - name: Install packages
         run: pip install -r requirements.txt
 
-      - name: Run Market Radar
+      - name: Run J-TENBAGGER
         run: python main.py
         env:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-          NOTIFY_MODE: MORNING
